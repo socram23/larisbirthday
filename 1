@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Aniversário, Lari!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .cover {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1528818955841-a7f1425131b5?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover h1 {
+            font-size: 4rem;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .about {
+            padding: 50px 20px;
+            background: #2c2c2c;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .world {
+            padding: 50px 20px;
+            background: #1a1a1a;
+            text-align: center;
+        }
+
+        .world h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 200px;
+            padding: 20px;
+            background: #2c2c2c;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+        }
+
+        .secret-message {
+            text-align: center;
+            padding: 50px 20px;
+            background: #2c2c2c;
+        }
+
+        .secret-message button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: #ff4081;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .secret-message button:hover {
+            background: #e91e63;
+        }
+
+        .secret-message p {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .confetti i {
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: #fb9062;
+            animation: confetti 5s linear infinite;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(720deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <h1>Feliz Aniversário, Larissa!!!</h1>
+    </div>
+
+    <div class="about">
+        <h2>About</h2>
+        <p>
+            Você é uma pessoa incrível, obrigado por deixar os meus dias mais doces. Hoje é o seu dia, e você merece toda a felicidade do mundo! 
+        </p>
+    </div>
+
+    <div class="world">
+        <h2>You</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/2f/90/2e/2f902e9f47bad72293c1447dc4780878.jpg" alt="Jb">
+                <p>"Baby, baby, baby, oh"</p>
+            </div>
+            <div class="card">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_815685-MLU78099886397_072024-O.webp" alt="Mimir">
+                <p>Uma caminha para dormir juntos, sim, a florzinha é daor!a</p>
+            </div>
+            <div class="card">
+                <img src="https://atlantidasc-prod.s3.amazonaws.com/wp-content/uploads/2024/01/image-33.png" alt="Luisa">
+                <p>Fã number one da Luisa Sonza.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="secret-message">
+        <button onclick="revealMessage()">Clique para uma surpresa!</button>
+        <p id="hiddenMessage">Você é única e especial. Feliz aniversário! 🎉</p>
+    </div>
+
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        function revealMessage() {
+            const message = document.getElementById('hiddenMessage');
+            const confettiContainer = document.getElementById('confetti');
+
+            message.style.display = 'block';
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('i');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confettiContainer.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
